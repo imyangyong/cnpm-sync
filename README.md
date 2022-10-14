@@ -11,7 +11,7 @@ npm install cnpm-sync -g
 ## How to use
 
 ```
-cnpm-sync [package-name]
+cnpm-sync <package-name>
 ```
 
 that's all.
