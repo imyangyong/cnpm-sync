@@ -68,6 +68,7 @@
   "dependencies": {
     "kolorist": "^1.6.0",
     "minimist": "^1.2.7",
-    "node-fetch": "^3.2.10"
+    "node-fetch": "^3.2.10",
+    "open": "^8.4.0"
   }
 }
