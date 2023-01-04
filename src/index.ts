@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 import open from 'open'
 import log from './utils/log'
 
-const isAvaliablePackage = async (name: string): Promise<boolean | string> => {
+const isAvaliablePackage = async (name: string): Promise<false | string> => {
   const response = await fetch(`https://www.npmjs.com/search/suggestions?${new URLSearchParams({
     q: name,
   })}`, {
