@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 import open from 'open'
 import log from './utils/log'
 
-const isAvaliablePackage = async (name: string): Promise<false | string> => {
+const isAvailablePackage = async (name: string): Promise<false | string> => {
   const response = await fetch(`https://www.npmjs.com/search/suggestions?${new URLSearchParams({
     q: name,
   })}`, {
@@ -40,7 +40,7 @@ const init = async () => {
 
   const pkgName = args[0]
 
-  const latestVersion = await isAvaliablePackage(pkgName)
+  const latestVersion = await isAvailablePackage(pkgName)
   if (!latestVersion)
     throw new Error(`${pkgName} is invalid package name`)
 
