@@ -2,6 +2,7 @@ import minimist from 'minimist'
 import fetch from 'node-fetch'
 import open from 'open'
 import log from './utils/log'
+import { type } from 'os'
 
 const isAvailablePackage = async (name: string): Promise<false | string> => {
   const response = await fetch(`https://www.npmjs.com/search/suggestions?${new URLSearchParams({
@@ -20,14 +21,17 @@ const isAvailablePackage = async (name: string): Promise<false | string> => {
 }
 
 const visitCnpmSyncWebsite = async (pkgName: string, version?: string) => {
-  const url = `https://npmmirror.com/sync/${pkgName}`
+  // const url = `https://npmmirror.com/sync/${pkgName}`
 
-  open(url)
+  // open(url)
 
-  // fake success
-  setTimeout(() => {
-    log.success(`sync ${pkgName} complete! the latest version is v${version}`)
-  }, 2000)
+  const response = await fetch(`https://registry-direct.npmmirror.com/-/package/${pkgName}/syncs`, {
+    method: 'PUT',
+  })
+  const data = await response.json() as { id: string, ok: boolean, state: string, type: string }
+  if (data?.ok) {
+    log.success(`sync ${pkgName} complete! see detail: https://npmmirror.com/package/${pkgName}/versions`)
+  }
 }
 
 const init = async () => {
